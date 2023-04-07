@@ -8,11 +8,13 @@ logging.basicConfig(level = logging.DEBUG,
                     format = "%(asctime)s --> %(levelname)s --> %(message)s")
 
 # Setting up an API that can requests multiple names of people
-response = requests.get(None)
+#response = requests.get('http://None')
 
 # Creating the rock/paper/scissors choices selection and a list of computer names to randomize
 choices: List[str] = ["rock", "paper", "scissors"]
 computer_names: List[str] = ["John", "Jenny", "Mark", "George", "Lisa", "Jeremy", "Paul"]
+random_lst: List[str] = ["rock", "paper", "scissors", "q"]
+
 
 computer_pick = random.choice(choices)
 comp_names = random.choice(computer_names)
@@ -37,7 +39,7 @@ if __name__ == "__main__":
         
         question = input("Pick rock/paper/scissors or q to quit: ")
         
-        if question.lower() not in "rock" or "paper" or "scissors" or "q":
+        if question.lower() not in random_lst:
             logging.warning("Please type in the correct characters!! \n")
         
         elif question.lower() == "rock" and computer_pick == "rock":
@@ -69,7 +71,7 @@ if __name__ == "__main__":
             break
     
         else:
-            logging.info(f"{comp_names} wins \n")
+            logging.info(f"{comp_names} drew {computer_pick} and wins \n")
             computer += 1
        
 logging.info(f"{comp_names} got: {computer} wins \n")
