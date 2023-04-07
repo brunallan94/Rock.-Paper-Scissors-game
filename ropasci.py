@@ -8,7 +8,12 @@ logging.basicConfig(level = logging.DEBUG,
                     format = "%(asctime)s --> %(levelname)s --> %(message)s")
 
 # Setting up an API that can requests multiple names of people
-#response = requests.get('http://None')
+response = requests.get('https://randomuser.me/api')
+
+first_name = response.json()['results'][0]['name']['first']
+last_name = response.json()['results'][0]['name']['last']
+
+# logging.debug(f'{first_name} {last_name}')
 
 # Creating the rock/paper/scissors choices selection and a list of computer names to randomize
 choices: List[str] = ["rock", "paper", "scissors"]
@@ -17,7 +22,8 @@ random_lst: List[str] = ["rock", "paper", "scissors", "q"]
 
 
 computer_pick = random.choice(choices)
-comp_names = random.choice(computer_names)
+# comp_names = random.choice(computer_names)
+comp_names = first_name + " " + last_name
 
 # Initializing the amount of points to be awarded to the winner or the number of draws gotten when playing
 draw: int = 0
